@@ -1,0 +1,228 @@
+Tiêu chí 
+
+SQL Server Sensitivity Classification 
+
+SQL Server Extended Properties 
+
+Tính năng chính 
+
+Cho phép thêm metadata phân loại nhạy cảm vào database column. Classification có thể gồm Sensitivity Label và Information Type. 
+
+Cho phép thêm custom property vào database object dưới dạng name-value pair metadata. 
+
+Đối tượng có thể tagging 
+
+Hiện chỉ hỗ trợ column. "Currently only column classification is supported." 
+
+Có thể áp dụng cho nhiều loại object như Database, Schema, Table, Column, Index, Parameter... 
+
+Phân loại dữ liệu cá nhân theo loại thông tin 
+
+Có thể gán Information Type và Sensitivity Label cho cột dữ liệu. 
+
+ 
+
+Có thể tạo property tùy ý như "PII", "DLCN", "SensitivePersonalData"... nhưng Microsoft không định nghĩa sẵn các loại này. 
+
+Gán mức độ nhạy cảm 
+
+Có sẵn thuộc tính Label và Rank (low/medium/high/critical). 
+
+Không có sẵn. Nhưng có thể tự xây dựng convention riêng. 
+
+Tự động phát hiện dữ liệu cần gắn tag 
+
+Classification engine có thể scan database và đưa ra recommendation cho các cột có khả năng chứa dữ liệu nhạy cảm. 
+
+Không có cơ chế discovery hoặc recommendation. 
+
+ 
+
+Kiểm soát trạng thái phân loại dữ liệu 
+
+Có thể truy xuất 
+
+ 
+
+Có thể truy xuất  
+
+Khác 
+
+Data Discovery & Classification có thể được dùng để "Helping meet data privacy standards" và "Monitoring access to databases/columns containing highly sensitive data". 
+
+Không có 
+
+Tích hợp Purview Information Protection 
+
+Có 
+
+Không 
+
+Tích hợp Power BI sensitivity labels 
+
+Có 
+
+Không 
+
+Metadata có thể gắn kèm 
+
+Sensitivity Label, Information Type, Rank 
+
+Cho phép gắn các cặp Name-Value do tổ chức tự định nghĩa lên table hoặc column. => Có thể tự tạo các property: data owner, retention, … 
+
+ 
+
+ 
+
+ 
+
+- Không có mô tả chính thức của MS về khả năng duy trì tag đối với các hoạt động: sao chép dữ liệu, export hoặc chuyển dữ liệu. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Vấn đề 
+
+Sensitivity Classification 
+
+Extended Properties 
+
+Gap 
+
+Ghi chú 
+
+Xác định column chứa DLCN 
+
+Có thể gắn classification ở mức column và query qua sys.sensitivity_classifications. 
+
+Có thể lưu tag tự định nghĩa, nhưng không có classification model chuyên biệt. 
+
+Không có 
+
+Không tự phát hiện toàn bộ dữ liệu cá nhân trên mọi hệ thống ngoài SQL Server. 
+
+Phân loại DLCN 
+
+Có INFORMATION_TYPE dùng để mô tả loại dữ liệu trong column (vd Name, National ID, Contact Info) 
+
+Có thể tự tạo property ( vd DataType = National ID) nhưng cần tổ chức tự chuẩn hoá. 
+
+Không có 
+
+Cần update và quản lý từ điển cho các datatype hoặc cần chuẩn hóa, thống nhất. 
+
+ 
+
+Gán mức độ nhạy cảm 
+
+Có RANK theo tập giá trị Microsoft cung cấp. 
+
+Có thể tự tạo property như SensitivityLevel, nhưng là convention nội bộ. 
+
+Không có 
+
+ 
+
+Quản lý consent đối với các trường DLCN 
+
+N/A 
+
+N/A 
+
+Có? 
+
+Onetrust có thể đáp ứng 
+
+Lưu thông tin data owner/retention period/data domain 
+
+ 
+
+Đáp ứng 
+(vd DataOwner = Retail Banking;  
+
+RetentionPeriod = 10 years; DataDomain = Customer…) 
+
+Không có 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Playbook - SQL Server Sensitivity Classification 
+
+B1: Lấy danh sách column trong database 
+
+B2: Mapping column với loại dữ liệu cá nhân 
+
+B3: Gắn Sensitivity Classification 
+
+ADD SENSITIVITY CLASSIFICATION TO dbo.Customer.FullnubName 
+
+WITH 
+
+( 
+
+LABEL = 'Confidential', 
+
+INFORMATION_TYPE = 'Name' 
+
+); 
+
+B4: Kiểm tra classification đã được ghi nhận 
+
+ 
+
+Playbook - SQL Server Extended Properties 
+
+B1: Xác định property cần lưu 
+
+B2: Gắn property cho column 
+
+EXEC sys.sp_addextendedproperty 
+
+@name = N'DataOwner', 
+
+@value = N'Retail Banking', 
+
+@level0type = N'SCHEMA', 
+
+@level0name = N'dbo', 
+
+@level1type = N'TABLE', 
+
+@level1name = N'Customer', 
+
+@level2type = N'COLUMN', 
+
+@level2name = N'NationalID'; 
+
+B3: Kiểm tra Extended Properties 
+
+B4: Update property khi có thay đổi 
