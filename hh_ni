@@ -1,0 +1,771 @@
+SELF-STUDY ASSIGNMENT 
+
+NIST SP 800-53 Revision 5 
+
+Part 1: Access Governance 
+
+Learner 
+
+Mentor 
+
+Assigned Date 
+
+Due Date 
+
+Nguyen Thi Dieu 
+
+Nguyen Phuong Linh 
+
+Sep 4, 2026 
+
+Sep 11, 2026 
+
+ 
+
+Purpose 
+
+This assignment assesses the learner’s ability to interpret NIST SP 800-53, translate a control into operating requirements, define an evidence request, identify unresolved matters, and maintain reference traceability. The assignment uses synthetic NovaPay information only. 
+
+Learning Objectives 
+
+Explain the role and limitations of NIST SP 800-53 in an organizational context. 
+
+Interpret AC-2 Account Management and translate it into account-lifecycle requirements. 
+
+Apply the interpretation to access governance for the NovaPay Transaction Platform. 
+
+Prepare a complete and proportionate evidence request for a quarterly access review. 
+
+Identify uncertainties and matters requiring clarification or escalation. 
+
+Document the publication edition and references that informed the analysis. 
+
+Simulation Context 
+
+Item 
+
+Description 
+
+Organization 
+
+NovaPay, a fictional Vietnamese fintech company, provides 1 electronic payment platform. 
+
+System 
+
+NovaPay Transaction Platform. 
+
+Activity 
+
+Quarterly access review. 
+
+Review period 
+
+Q2 2026. 
+
+Accounts in scope 
+
+Employee accounts, privileged accounts, and service accounts. 
+
+Review scope 
+
+Access rights, authorization, periodic review, access modification, revocation, and evidence retention. 
+
+ 
+
+Required Reading 
+
+NIST SP 800-53 Revision 5, Chapter 1: Introduction. 
+
+NIST SP 800-53 Revision 5, Chapter 2: The Fundamentals. 
+
+NIST SP 800-53 Revision 5, AC-2: Account Management. 
+
+Submission Package 
+
+Part A: One-page analysis. 
+
+Part B: Completed AC-2 control decomposition. 
+
+Part C: Written quarterly access review evidence request. 
+
+Part D: Three questions or uncertainties for mentor clarification. 
+
+Part E: Completed reference record. 
+
+Part F: Learner declaration and final quality check. 
+
+PART A: ONE-PAGE ANALYSIS 
+
+Task 
+
+Write no more than one page addressing the following questions: 
+
+What is NIST SP 800-53 intended to provide to an organization? 
+
+What decisions must an organization make before applying a control? 
+
+What would constitute inappropriate or unsupported use of the publication? 
+
+How does AC-2 relate to the NovaPay access-governance scenario? 
+
+What limitations must be stated when applying the publication to NovaPay? 
+
+Learner Response 
+
+________________________________________________________________________________ 
+
+________________________________________________________________________________ 
+
+________________________________________________________________________________ 
+
+________________________________________________________________________________ 
+
+________________________________________________________________________________ 
+
+________________________________________________________________________________ 
+
+________________________________________________________________________________ 
+
+________________________________________________________________________________ 
+
+________________________________________________________________________________ 
+
+________________________________________________________________________________ 
+
+________________________________________________________________________________ 
+
+________________________________________________________________________________ 
+
+________________________________________________________________________________ 
+
+________________________________________________________________________________ 
+
+________________________________________________________________________________ 
+
+________________________________________________________________________________ 
+
+________________________________________________________________________________ 
+
+________________________________________________________________________________ 
+
+________________________________________________________________________________ 
+
+________________________________________________________________________________ 
+
+ 
+
+PART B: AC-2 CONTROL DECOMPOSITION 
+
+Task 
+
+Analyze AC-2 Account Management and translate it into practical operating components for the NovaPay Transaction Platform. Use your own words. Record assumptions, dependencies, and information gaps explicitly. 
+
+No. 
+
+Component to Analyze 
+
+Learner Analysis 
+
+1 
+
+Control objective 
+
+ 
+
+2 
+
+Risks addressed 
+
+ 
+
+3 
+
+Scope and boundaries 
+
+ 
+
+4 
+
+Account types in scope 
+
+ 
+
+5 
+
+Account inventory and authoritative sources 
+
+ 
+
+6 
+
+Access request initiator 
+
+ 
+
+7 
+
+Authorization and approval authority 
+
+ 
+
+8 
+
+Account provisioning 
+
+ 
+
+9 
+
+Access modification 
+
+ 
+
+10 
+
+Account disabling and removal 
+
+ 
+
+11 
+
+Privileged-account requirements 
+
+ 
+
+12 
+
+Service-account requirements 
+
+ 
+
+13 
+
+Periodic and event-driven review 
+
+ 
+
+14 
+
+Monitoring and reporting 
+
+ 
+
+15 
+
+Evidence and retention 
+
+ 
+
+16 
+
+Process and control ownership 
+
+ 
+
+17 
+
+Exceptions and escalation 
+
+ 
+
+18 
+
+Dependencies on other controls or processes 
+
+ 
+
+19 
+
+Assumptions and unresolved matters 
+
+ 
+
+20 
+
+Proposed actions for identified gaps 
+
+ 
+
+ 
+
+ 
+
+PART C: QUARTERLY ACCESS REVIEW EVIDENCE REQUEST 
+
+Task 
+
+Draft a formal written request to the NovaPay system owner or information technology team for evidence of the Q2 2026 quarterly access review. The request must allow the recipient to understand the required submission and allow a reviewer to determine whether the evidence is complete and suitable for assessment. 
+
+Evidence Request 
+
+Field 
+
+Learner Draft 
+
+Recipient and accountable evidence provider 
+
+ 
+
+Subject 
+
+ 
+
+Purpose 
+
+ 
+
+System and review period 
+
+ 
+
+Account population and scope 
+
+ 
+
+Evidence requested 
+
+ 
+
+Required source and format 
+
+ 
+
+Required metadata and context 
+
+ 
+
+Submission method and access restrictions 
+
+ 
+
+Due date 
+
+ 
+
+Sensitive-data handling requirements 
+
+ 
+
+Completeness criteria 
+
+ 
+
+Response to incomplete or unavailable evidence 
+
+ 
+
+Contact for clarification 
+
+ 
+
+ 
+
+Evidence Inventory 
+
+Evidence Item 
+
+Purpose 
+
+Authoritative Source 
+
+Population/Period 
+
+Completeness Criteria 
+
+Limitation 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+PART D: QUESTIONS FOR MENTOR CLARIFICATION 
+
+Task 
+
+Identify three specific uncertainties requiring mentor clarification. Each question must state why the uncertainty affects the analysis or conclusion. 
+
+No. 
+
+Area 
+
+Question or Uncertainty 
+
+Effect on Analysis or Conclusion 
+
+1 
+
+AC-2 interpretation or application 
+
+ 
+
+ 
+
+2 
+
+Quarterly access review evidence 
+
+ 
+
+ 
+
+3 
+
+NIST SP 800-53 scope or limitation 
+
+ 
+
+ 
+
+ 
+
+PART E: REFERENCE RECORD 
+
+1. Publication Used 
+
+Information Field 
+
+Learner Entry 
+
+Publication title 
+
+ 
+
+Issuing organization 
+
+ 
+
+Revision and release or update information 
+
+ 
+
+Publication date 
+
+ 
+
+Official source 
+
+ 
+
+Access date 
+
+ 
+
+Sections consulted 
+
+ 
+
+ 
+
+2. References Used 
+
+Record only the controls, control enhancements, sections, or other authoritative references that directly informed the submitted analysis. 
+
+Reference ID 
+
+Reference Title 
+
+Reason for Use 
+
+Assignment Section Supported 
+
+Limitation or Dependency 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+PART F: FINAL QUALITY CHECK  
+
+Quality Check 
+
+Complete 
+
+Needs Revision 
+
+The submission is written in the learner’s own words. 
+
+☐ 
+
+☐ 
+
+The analysis distinguishes the publication from applicable law, contract, and internal policy. 
+
+☐ 
+
+☐ 
+
+The AC-2 decomposition addresses the full defined account population. 
+
+☐ 
+
+☐ 
+
+Assumptions, dependencies, and unresolved matters are explicit. 
+
+☐ 
+
+☐ 
+
+The evidence request defines system, period, population, source, context, and completeness. 
+
+☐ 
+
+☐ 
+
+Conclusions do not exceed the available facts or evidence. 
+
+☐ 
+
+☐ 
+
+The reference record identifies the exact edition and direct references used. 
+
+☐ 
+
+☐ 
+
+No real company, customer, personnel, system, or authentication data is included. 
+
+☐ 
+
+☐ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Manager Review  
+
+Assessment Area 
+
+Rating 
+
+Review Comments 
+
+Understanding of NIST SP 800-53 purpose  
+
+and limitations 
+
+ 
+
+ 
+
+AC-2 interpretation and operational decomposition 
+
+ 
+
+ 
+
+Evidence request 's quality and proportionality 
+
+ 
+
+ 
+
+Reference accuracy and traceability 
+
+ 
+
+ 
+
+Professional judgment, assumptions, 
+
+data handling 
+
+ 
+
+ 
+
+ 
+
+Assessment Criteria 
+
+Component 
+
+Weight 
+
+Standard 
+
+Part A: One-page analysis 
+
+20% 
+
+Accurate, concise, context-aware, and explicit limitations. 
+
+Part B: AC-2 decomposition 
+
+35% 
+
+Complete, operational, internally consistent, and supported by the reading. 
+
+Part C: Evidence request 
+
+25% 
+
+Clear, proportionate, secure, and assessable. 
+
+Part D: Clarification questions 
+
+10% 
+
+Specific, material, and linked to analysis or conclusion. 
+
+Part E: Reference record 
+
+10% 
+
+Accurate, direct, and traceable. 
+
+ 
+
+ 
