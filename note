@@ -1,0 +1,12 @@
+à k nhớ anh nói với em chưa í nhỉ, mình đang chia làm 2 giai đoạn nhá. 1 là discovery hoặc hiểu là đánh giá quyết định coi cái dữ liệu này có phải DLCN không và là loại gì, nghĩa là output nó là recommend í. Thì thường giải pháp sẽ là dựa vào AI suggest, hoặc dựa vào dictionary custom tiếng việt.
+ 
+hoạt động thứ 2 là tagging
+ 
+thì hoặc auto tagging AI, hoặc auto tagging bang mấy giải pháp trên nền tang í
+ 
+output em search cũm nên ở dạng này nhá
+ 
+ví dụ như ở hoạt động discovery, thì Macie AWS là nó có AI suggest, còn các giải pháp còn lại từ SQL tới mongodb, anh đang hiểu nếu có thì nó sẽ là dictionary.
+ 
+ý nhá, có gì tối về xem lại giúp anh, rùi mai gửi lại anh thông tin nà được
+ 
