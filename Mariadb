@@ -1,0 +1,66 @@
+Mariadb
+
+               Giải   
+                   pháp               
+Tiêu 
+   Chí 	Column COMMENT (managed via INFORMATION_SCHEMA.COLUMNS)
+Tính năng chính	Gắn metadata/comment cho column hoặc table và lưu trong INFORMATION_SCHEMA.COLUMNS.COLUMN_COMMENT.
+Đối tượng có thể tagging	Table, Column
+Phân loại dữ liệu cá nhân theo loại thông tin	Có thể khai báo email, name, phone, national ID,… trong comment nhưng ở dạng text tự do 
+Gán mức độ nhạy cảm	Có thể lưu Public, internal, confidential, restricted… trong comment metadata
+Tự động phát hiện dữ liệu cần gắn tag	Không hỗ trợ native
+Kiểm soát trạng thái phân loại dữ liệu	Hạn chế, chỉ lưu metadata, không có workflow approval/review
+Kiểm soát truy cập dựa trên nhãn (access control)	Không hỗ trợ
+Phạm vi nguồn dữ liệu	Một MariaDB database
+Metadata có thể gắn kèm	Label, informationType, Owner, Retention,.. theo convention, nội bộ trong comment
+Khả năng mở rộng (Scalability)	Cao, Metadata được lưu trong information schema và quản lý bởi DBMS.
+Khả năng bảo trì (Maintainability)	Cao. Có thể chỉnh sửa comment độc lập với dữ liệu nghiệp vụ
+Khả năng truy vấn báo cáo dữ liệu đã phân loại 	Trung bình. Có thể truy vấn metadata phân loại thông qua INFORMATION_SCHEMA.COLUMNS.
+
+
+Câu lệnh gán nhãn  tổng quát : 
+
+Column COMMENT + INFORMATION_SCHEMA.COLUMNS
+
+Tạo bảng và gán nhãn :
+
+CREATE TABLE customer (
+            id INT,
+
+            full_name VARCHAR(100)
+                  COMMENT 'LABEL=Confidential; INFORMATION_TYPE=Name',
+            email VARCHAR(255)
+                  COMMENT 'LABEL=Restricted; INFORMATION_TYPE=Email'
+);
+
+
+Bổ sung nhãn cho cột có sẵn 
+ALTER TABLE customer
+MODIFY COLUMN full_name VARCHAR(100)
+COMMENT 'LABEL=Confidential; INFORMATION_TYPE=Name';
+
+Tài liệu đã dùng để research 
+Column COMMENT + INFORMATION_SCHEMA.COLUMNS
+1. Tính năng chính
+https://mariadb.com/docs/server/reference/system-tables/information-schema/information-schema-tables/information-schema-columns-table
+2. Đối tượng có thể tagging 
+ 
+https://mariadb.com/docs/server/reference/system-tables/information-schema/information-schema-tables/information-schema-columns-table
+
+3. Phân loại dữ liệu cá nhân theo loại thông tin
+https://mariadb.com/docs/server/reference/system-tables/information-schema/information-schema-tables/information-schema-columns-table
+
+4. Gán mức độ nhạy cảm
+  https://mariadb.com/docs/server/reference/system-tables/information-schema/information-schema-tables/information-schema-columns-table
+
+6. Kiểm soát trạng thái phân loại dữ liệu
+ https://mariadb.com/docs/server/reference/system-tables/information-schema/information-schema-tables/information-schema-columns-table
+
+7. Kiểm soát truy cập dựa trên nhãn
+  https://mariadb.com/docs/server/reference/system-tables/information-schema/information-schema-tables/information-schema-columns-table
+
+8. Phạm vi nguồn dữ liệu
+https://mariadb.com/docs/server/reference/system-tables/information-schema/information-schema-tables/information-schema-columns-table
+
+10. Metadata có thể gắn kèm
+https://mariadb.com/docs/server/reference/system-tables/information-schema/information-schema-tables/information-schema-columns-table
