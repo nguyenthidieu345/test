@@ -1,0 +1,170 @@
+Research Data Classification -Cloud AWS
+
+               Giải   
+                   pháp               
+Tiêu 
+   Chí 	Amazon Macie	AWS Glue Custom Properties + Lake Formation LF-Tags
+Tính năng chính	Khám phá và phân tích dữ liệu nhạy cảm trong S3 bằng Managed Data Identifiers và Custom Data Identifiers.	Gán metadata cho Data Catalog resources và thực hiện Tag-Based Access Control thông qua LF-Tags.
+Đối tượng có thể tagging	Amazon S3 objects được Macie phân tích để phát hiện dữ liệu nhạy cảm	Có thể gắn ở Database, Table, và Column trong Glue Data Catalog (LF-Tags hỗ trợ cả 3 cấp).
+Phân loại dữ liệu cá nhân theo loại thông tin	Managed Data Identifiers và Custom Data Identifiers hỗ trợ nhận diện nhiều loại PII/sensitive data	Không cung cấp sẵn taxonomy PII hoặc mức độ nhạy cảm; LF-Tags và Glue Custom Properties là metadata dạng key-value do người dùng tự định nghĩa
+Gán mức độ nhạy cảm	Không có sẵn Data Classification Level; hỗ trợ phát hiện dữ liệu nhạy cảm và cung cấp findings để tổ chức tự gán mức phân loại	Không có cơ chế đánh giá độ nhạy cảm dựng sẵn; giá trị tag được định nghĩa bởi người dùng 
+Tự động phát hiện dữ liệu cần gắn tag	Có. Automated Sensitive Data Discovery tự động phân tích S3 objects và tạo discovery results.	Không
+Kiểm soát trạng thái phân loại dữ liệu	Có thể xem Findings, sensitive data discovery results và báo cáo phân loại thông qua Macie Console hoặc API	Có thể truy xuất LF-Tags và metadata thông qua Lake Formation và Data Catalog APIs.
+Kiểm soát truy cập dựa trên nhãn (access control)	Không.	Có LF-Tag Based Access Control (LF-TBAC).
+Phạm vi nguồn dữ liệu	 Amazon S3	Áp dụng đối tài nguyên được quản lý trong AWS Glue Data Catalog.
+Tích hợp khác	AWS Security Hub, Amazon EventBridge và các dịch vụ giám sát/bảo mật AWS khác.	Amazon Athena, Amazon Redshift Spectrum, Amazon EMR và Amazon DataZone thông qua AWS Glue Data Catalog
+Metadata có thể gắn kèm	Hạn chế, chủ yếu là kết quả discovery và finding	Metadata và LF-Tags dạng key-value do người dùng định nghĩa.
+
+Amazon Macie
+1. Tính năng chính
+Evidence Note
+Amazon Macie is a data security service that discovers sensitive data using machine learning and pattern matching, provides visibility into data security risks, and enables you to automate protection against those risks. [aws.amazon.com], [docs.aws.amazon.com]
+==> 
+•	Tự động phát hiện dữ liệu nhạy cảm.
+•	Hỗ trợ nhận diện PII, PHI, Financial Data, Credentials.
+•	Hỗ trợ cả bộ nhận diện mặc định và tự định nghĩa.
+ 
+2. Đối tượng có thể tagging 
+Evidence Note
+Macie analyzes Amazon S3 objects through Automated Sensitive Data Discovery and Sensitive Data Discovery Jobs. [docs.aws.amazon.com], [docs.aws.amazon.com]
+==> 
+•	Phạm vi scan của Macie là dữ liệu lưu trong Amazon S3.
+•	Đơn vị được phân tích là S3 bucket và S3 object.
+ 
+3. Phân loại dữ liệu cá nhân theo loại thông tin
+Evidence Note
+Managed Data Identifiers can detect a large and growing list of sensitive data types including Personally Identifiable Information (PII), Protected Health Information (PHI), Financial Information and Credentials Data. [docs.aws.amazon.com]
+====> 
+•	Có taxonomy dữ liệu nhạy cảm dựng sẵn.
+•	Có thể phân biệt Email, Passport, Credit Card, National ID, Bank Account...
+•	Hỗ trợ phát hiện nhiều loại PII khác nhau.
+ 
+4. Gán mức độ nhạy cảm
+Evidence Note
+Macie generates sensitive data findings and discovery results when sensitive data is detected. AWS does not provide a built-in business classification model such as Public/Internal/Confidential/Restricted. Organizations define their own classification scheme. [docs.aws.amazon.com], [docs.aws.amazon.com]
+===> 
+•	Macie phát hiện dữ liệu nhạy cảm.
+•	Không tự gán mức Confidential hoặc Restricted.
+•	Doanh nghiệp phải tự định nghĩa mức phân loại.
+ 
+5. Tự động phát hiện dữ liệu cần gắn tag
+Evidence Note
+Automated Sensitive Data Discovery evaluates the S3 bucket inventory daily and automatically analyzes selected S3 objects for sensitive data. [docs.aws.amazon.com], [aws.amazon.com]
+===> 
+•	Có khả năng phát hiện tự động.
+•	Không cần người dùng chỉ định từng file.
+ 
+6. Kiểm soát trạng thái phân loại dữ liệu
+Evidence Note
+Macie creates Sensitive Data Findings and Sensitive Data Discovery Results that record details about detected sensitive data and analysis outcomes. [docs.aws.amazon.com], [docs.aws.amazon.com]
+===> 
+•	Có thể theo dõi kết quả phân loại.
+•	Có audit trail phục vụ kiểm tra.
+ 
+7. Kiểm soát truy cập dựa trên nhãn
+Evidence Note
+Macie focuses on discovering and monitoring sensitive data. It is not a tag-based authorization service. [aws.amazon.com], [docs.aws.amazon.com]
+==> 
+•	Không cung cấp Label-Based Access Control.
+•	Phải tích hợp với Lake Formation, IAM hoặc công cụ khác.
+ 
+8. Phạm vi nguồn dữ liệu
+Evidence Note
+Amazon Macie discovers sensitive data in Amazon S3. [docs.aws.amazon.com], [aws.amazon.com]
+==> 
+•	Native scope: Amazon S3.
+ 
+9. Tích hợp
+Evidence Note
+Macie integrates with AWS security services and can be used with services such as EventBridge and Security Hub for automated monitoring and remediation workflows. [aws.amazon.com], [aws.amazon.com]
+==> 
+•	Hỗ trợ hệ sinh thái Security của AWS.
+ 
+10. Metadata có thể gắn kèm
+Evidence Note
+Macie produces findings, sensitivity detection details, and discovery result metadata. [docs.aws.amazon.com], [docs.aws.amazon.com]
+==> 
+•	Metadata chủ yếu liên quan đến kết quả scan.
+•	Không phải framework quản lý metadata tổng quát.
+ 
+AWS Glue Custom Properties + Lake Formation LF-Tags
+1. Tính năng chính
+Evidence Note
+Lake Formation tag-based access control (LF-TBAC) enables organizations to assign LF-Tags to resources and grant access based on tag expressions. [docs.aws.amazon.com], [docs.amazonaws.cn]
+==> 
+•	Chức năng chính là metadata governance và access control.
+ 
+2. Đối tượng có thể tagging
+Evidence Note
+LF-Tags can be assigned to Data Catalog objects such as databases, tables, views and columns. [docs.aws.amazon.com], [docs.amazonaws.cn]
+===> 
+•	Hỗ trợ Database Level.
+•	Hỗ trợ Table Level.
+•	Hỗ trợ Column Level.
+ 
+3. Phân loại dữ liệu cá nhân theo loại thông tin
+Evidence Note
+Each LF-Tag is a key-value pair that is created and managed by users. [docs.amazonaws.cn], [docs.aws.amazon.com]
+==> 
+•	Không có taxonomy PII mặc định.
+•	User tự định nghĩa: 
+o	PII=Yes
+o	PIIType=Email
+o	Sensitivity=High
+ 
+4. Gán mức độ nhạy cảm
+Evidence Note
+LF-Tags are user-defined tag keys and values. Lake Formation does not provide built-in sensitivity scoring or classification levels. [docs.aws.amazon.com], [docs.amazonaws.cn]
+==> 
+•	Có thể tạo: 
+o	Classification=Public
+o	Classification=Internal
+o	Classification=Confidential
+•	Nhưng AWS không cung cấp sẵn.
+ 
+5. Tự động phát hiện dữ liệu cần gắn tag
+Evidence Note
+LF-Tags are assigned to resources; no native sensitive data discovery capability is provided by LF-Tags themselves. In the AWS reference architecture, sensitive data detection is performed by AWS Glue before LF-Tags are applied. [aws.amazon.com], [docs.aws.amazon.com]
+==> 
+•	Không có data discovery.
+•	Cần tool khác như Macie hoặc Glue Sensitive Data Detection.
+ 
+6. Kiểm soát trạng thái phân loại dữ liệu
+Evidence Note
+LF-Tags can be managed through the Lake Formation Console, APIs and CLI. [docs.aws.amazon.com]
+==> 
+•	Có thể truy xuất trạng thái gán tag.
+•	Có thể audit qua API.
+ 
+7. Kiểm soát truy cập dựa trên nhãn
+Evidence Note
+Tag-based access control grants permissions on one or more LF-Tags to principals. Access is determined by matching LF-Tag expressions. [docs.amazonaws.cn], [docs.aws.amazon.com]
+===> 
+•	Đây là chức năng mạnh nhất của LF-Tags.
+•	Hỗ trợ Data Governance ở quy mô lớn.
+ 
+8. Phạm vi nguồn dữ liệu
+Evidence Note
+LF-TBAC applies to Glue Data Catalog resources including databases, tables and columns. [docs.amazonaws.cn], [docs.aws.amazon.com]
+===> 
+•	Scope là Data Catalog resources.
+ 
+9. Tích hợp
+Evidence Note
+Data Catalog metadata and Lake Formation permissions are leveraged by data services such as Amazon Athena, EMR and Redshift Spectrum. [aws.amazon.com], [docs.amazonaws.cn]
+===> 
+•	Tích hợp tốt với Data Lake và Analytics ecosystem.
+ 
+10. Metadata có thể gắn kèm
+Evidence Note
+Each LF-Tag is defined as a key-value pair and can be assigned to catalog resources. [docs.amazonaws.cn], [docs.aws.amazon.com]
+Ví dụ
+•	Classification=Confidential
+•	PII=Yes
+•	DataOwner=HR
+•	Country=VN
+•	Retention=5Years
+===> 
+•	Linh hoạt hơn Macie rất nhiều về quản lý metadata.
+
+
