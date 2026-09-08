@@ -1,0 +1,111 @@
+MongoDB
+               Giải   
+                   pháp               
+Tiêu 
+   Chí 	JSON Schema Validation + Classification Tags	Metadata Repository (Data Catalog Pattern)
+Tính năng chính	Sử dụng JSON Schema Validation để định nghĩa cấu trúc dữ liệu và gắn metadata phân loại tại field thông qua description hoặc quy ước nội bộ	Lưu trữ metadata phân loại dữ liệu trong collection riêng để quản lý tập trung
+Đối tượng có thể tagging	Collection, Field	Database, Collection, Field, Dataset, Application (tùy thiết kế)
+Phân loại dữ liệu cá nhân theo loại thông tin	Khai báo được  (email, name, phone, national ID, ..) qua description, nhưng ở dạng string tự do – dễ thiếu nhất quán (“CCCD” vs “cccd”) nếu không có convention chặt 	Định nghĩa hẳn trường informationType riêng, chuẩn hóa taxonomy băng enuk – nhất quán và validate được
+Gán mức độ nhạy cảm	Có thể lưu mức độ nhạy cảm (Public, Internal, Confidential, Restricted...)
+trong trường description hoặc custom metadata.
+•	Note : MongoDB không có sensitivity label native.	Hỗ trợ đầy đủ thông qua metadata riêng.
+Tự động phát hiện dữ liệu cần gắn tag	Không	Không
+Kiểm soát trạng thái phân loại dữ liệu	Hạn chế, chủ yếu phụ thuộc vào schema version và quy trình quản trị bên ngoài.	Có thể mở rộng Approval Status, Review Status, Owner
+Kiểm soát truy cập dựa trên nhãn (access control)	Không 	Không hỗ trợ native, có thể triển khai qua tầng ứng dụng 
+Phạm vi nguồn dữ liệu	Một collection MongoDB cụ thể.	Có thể mở rộng cho nhiều MongoDB, SQL Database, Data Lake, API, File System, ...
+Metadata có thể gắn kèm	Description, bsonType, required, validator.	Owner, Steward, Retention Period, Sensitivity Label, Information Type, Review Status, Data Source, ...
+
+
+Câu lệnh gán nhãn cho từng Phương pháp : 
+1.	JSON schema validation + classification tags
+
+db.createCollection("Customer", {
+    validator: {
+         $jsonSchema: {
+             bsonType: "object",
+             required: [“FullName”,  “Email”,  “age”,  “_classification”],
+             properties: {
+                 FullName: { bsonType: "string" },
+                 Email: { bsonType: "string" },
+                 age: { bsonType: “int” },
+                 _classification: {
+                      bsonType: “object”,
+                      required: [“dataSensitive”,  “containsPII”,  “tags”],
+                      properties: {
+                         dataSensitivity: {enum: [“Public”,  “Internal”, “Confidential”, Restricted”] },
+                         containsPII: {“bsonType: “bool” },
+                         tags: {bsonType: “array”, items: { bsonType: “string” } }
+                  }
+               }
+             }
+        }
+    }
+})
+
+2.	Metadata repository pattern
+Ví dụ collection : classification_metadata
+
+Gán nhãn : 
+db.classification_metadata.insertOne({
+         collection: "Customer",
+         field: "FullName",
+         label: "Confidential",
+         informationType: "Name"
+})
+Hoặc :
+db.classification_metadata.insertOne({
+         collection: "Customer",
+         field: "Email",
+         label: "Restricted",
+         informationType: "Email Address",
+         owner: "HR"
+})
+Hoặc
+db.classification_metadata.insertOne({
+         collection: "Customer",
+         field: "Email",
+         dataSensitivity: "Restricted",
+         informationType: "EmailAddress",
+         containsPII: true,
+         owner: "HR"
+         tags: [ “PII”, “ContactData”]
+})
+
+Tài liệu đã dùng :
+JSON Schema Validation + Classification Tags
+1. Tính năng chính
+ https://www.mongodb.com/docs/manual/core/schema-validation.md
+https://www.mongodb.com/docs/manual/core/schema-validation/
+2. Đối tượng có thể tagging 
+ https://www.mongodb.com/docs/manual/core/schema-validation/
+3. Phân loại dữ liệu cá nhân theo loại thông tin
+ https://www.mongodb.com/docs/manual/core/schema-validation/
+4. Gán mức độ nhạy cảm
+ https://www.w3schools.com/mongodb/mongodb_schema_validation.php
+ https://www.mongodb.com/docs/manual/core/schema-validation/ 
+6. Kiểm soát trạng thái phân loại dữ liệu
+ https://www.mongodb.com/docs/manual/core/schema-validation.md
+  https://www.mongodb.com/docs/manual/core/schema-validation/
+7. Kiểm soát truy cập dựa trên nhãn
+  https://www.mongodb.com/docs/manual/core/schema-validation/
+8. Phạm vi nguồn dữ liệu
+  https://www.mongodb.com/docs/manual/core/schema-validation/
+10. Metadata có thể gắn kèm
+https://www.w3schools.com/mongodb/mongodb_schema_validation.php
+ https://www.mongodb.com/docs/manual/core/schema-validation/
+ Metadata Repository (Data Catalog Pattern)
+1. Tính năng chính
+https://learn.microsoft.com/en-us/purview/data-map-classification
+2. Đối tượng có thể tagging
+https://learn.microsoft.com/en-us/purview/data-map-classification
+3. Phân loại dữ liệu cá nhân theo loại thông tin
+ https://learn.microsoft.com/en-us/purview/data-map-classification
+4. Gán mức độ nhạy cảm
+ https://learn.microsoft.com/en-us/purview/sensitivity-labels
+6. Kiểm soát trạng thái phân loại dữ liệu
+ https://learn.microsoft.com/en-us/purview/sensitivity-labels
+8. Phạm vi nguồn dữ liệu
+  https://learn.microsoft.com/en-us/purview/data-map-scan-data-sources 
+10. Metadata có thể gắn kèm
+https://learn.microsoft.com/en-us/purview/data-map-classification
+
