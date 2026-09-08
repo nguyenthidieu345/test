@@ -1,0 +1,66 @@
+ SAP HANA Native
+               Giải   
+                   pháp               
+Tiêu 
+   Chí 	Data Classification for Calculation Views	SAP Data Custodian – Information Detector
+Tính năng chính	Gán mức độ nhạy cảm cho calculation view để quản trị và ngăn kết hợp view không tương thích	Tự động phát hiện 1 số dữ liệu nhạy cảm (PII, finance,..) trên schema/table/column của HANA và gắn label
+Đối tượng có thể tagging	Chỉ calculation view	Schema, table, column ( của SAP HANA) + 1 số object cloud (S3, GCS, Blob)
+Phân loại dữ liệu cá nhân theo loại thông tin	Không phân loại theo loại PII (email,sdt,cccd,..) chỉ gán mức độ nhạy cảm chung	Có hỗ trợ một số loại: email, phone, person name, credit card, national ID,..
+Gán mức độ nhạy cảm	Tốt ( public, confidential, company secret, top secret,.. có thể tùy chỉnh)	Chủ yếu gắn lable “ có chưa dữ liệu nhạy cảm” chứ không có thang độ nhạy cảm chi tiết
+Tự động phát hiện dữ liệu cần gắn tag	Không	Có khả năng scan và phát hiện
+Kiểm soát trạng thái phân loại dữ liệu	Có ( theo dõi mức classification của view, kiểm tra khi combine view) 	Có (kết quả scan, label trên resource)
+Kiểm soát truy cập dựa trên nhãn (access control)	Hạn chế 	Có thể dung label để tạo policy trong Data Custodian
+Phạm vi nguồn dữ liệu	Chỉ calculation view trong HANA	Schema, table, column của HANA + một số cloud storage
+Metadata có thể gắn kèm	Sensitivity level + thông tin view	Label phát hiện được + thông tin resource
+Khả năng tích hợp	Tích hợp trong HANA  Modeling	Tích hợp trong hệ sinh thái SAP Data Custodian ( policy, dashboard, cloud resource)
+Khả năng mở rộng 	Thấp ( chỉ trong phạm vi calculation view)	Trung bình ( mở rộng được sang cloud resource khác)
+Khả năng duy trì	Cao (native trong HANA)	Trung bình ( phụ thuộc vào việc triển khai và vận hành data custodian)
+
+Tài liệu đã dùng để Research 
+Data Classification for Calculation Views
+-	Tính năng chính : 
+o	https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-modeling-guide-for-sap-business-application-studio/data-classification-for-calculation-views?locale=en-US
+o	https://help.sap.com/docs/SAP_HANA_PLATFORM/e8e6c8142e60469bb401de5fdb6f7c00/e8b26f49218648eaa8e2ce9b54a8b812.html?locale=en-US
+-	Đối tượng có thể tagging :  
+o	https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-modeling-guide-for-sap-business-application-studio/data-classification-for-calculation-views?locale=en-US
+-	Phân loại dữ liệu cá nhân theo loại thông tin : 
+o	https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-modeling-guide-for-sap-business-application-studio/set-data-classification-for-calculation-views?locale=en-US
+-	Gán mức độ nhạy cảm :
+o	https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-modeling-guide-for-sap-business-application-studio/data-classification-for-calculation-views?locale=en-US
+-	Tự động phát hiện dữ liệu cần gán tag :  
+o	https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-modeling-guide-for-sap-business-application-studio/set-data-classification-for-calculation-views?locale=en-US
+-	Kiểm soát trạng thái phân loại dữ liệu : 
+o	https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-modeling-guide-for-sap-business-application-studio/data-classification-for-calculation-views?locale=en-US
+-	Kiểm soát truy cập dựa trên nhãn: 
+o	https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-modeling-guide-for-sap-business-application-studio/set-data-classification-for-calculation-views?locale=en-US
+-	Phạm vi nguồn dữ liệu : 
+o	https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-modeling-guide-for-sap-business-application-studio/data-classification-for-calculation-views?locale=en-US
+-	Metadata có thể gắn kèm : 
+o	https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-modeling-guide-for-sap-business-application-studio/data-classification-for-calculation-views?locale=en-US
+o	https://help.sap.com/docs/SAP_HANA_PLATFORM/e8e6c8142e60469bb401de5fdb6f7c00/e8b26f49218648eaa8e2ce9b54a8b812.html?locale=en-US
+-	Khả năng tích hợp. mở rộng , duy trì: 
+o	https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-modeling-guide-for-sap-business-application-studio?locale=en-US
+ 
+SAP Data Custodian – Information Detector
+-	Tính năng chính:
+o	https://help.sap.com/docs/sap-data-custodian/transparency-and-control-service/information-detector-for-sap-data-custodian-feature?locale=en-US
+-	Đối tượng có thể tagging:  	
+o	https://help.sap.com/docs/sap-data-custodian/transparency-and-control-service/information-detector-for-sap-data-custodian-feature?locale=en-US
+-	Phân loại dữ liệu cá nhân theo loại thông tin: 
+o	https://help.sap.com/docs/sap-data-custodian/transparency-and-control-service/information-detector-for-sap-data-custodian-feature?locale=en-US
+-	Gán mức độ nhạy cảm:
+o	https://help.sap.com/docs/sap-data-custodian/transparency-and-control-service/information-detector-for-sap-data-custodian-feature?locale=en-US
+-	Tự động phát hiện dữ liệu cần gán tag: 
+o	https://help.sap.com/docs/sap-data-custodian/transparency-and-control-service/information-detector-for-sap-data-custodian-feature?locale=en-US
+-	Kiểm soát trạng thái phân loại dữ liệu:
+o	https://help.sap.com/docs/sap-data-custodian/transparency-and-control-service/information-detector-for-sap-data-custodian-feature?locale=en-US
+-	Kiểm soát truy cập dựa trên nhãn: 
+o	https://help.sap.com/docs/sap-data-custodian/transparency-and-control-service/information-detector-for-sap-data-custodian-feature?locale=en-US
+-	Phạm vi nguồn dữ liệu: 
+o	https://help.sap.com/docs/sap-data-custodian/transparency-and-control-service/information-detector-for-sap-data-custodian-feature?locale=en-US
+-	Metadata có thể gắn kèm: 
+o	https://help.sap.com/docs/sap-data-custodian/transparency-and-control-service/information-detector-for-sap-data-custodian-feature?locale=en-US
+-	Khả năng tích hợp : 
+o	https://help.sap.com/docs/sap-data-custodian/transparency-and-control-service/information-detector-for-sap-data-custodian-feature?locale=en-US
+
+
